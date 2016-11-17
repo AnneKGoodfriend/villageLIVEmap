@@ -25,9 +25,8 @@ jQuery("#addForm").submit(function(e){
 	// the name form field value
 	var name = jQuery("#name").val();
 	var age = jQuery("#age").val();
-	var weight = jQuery("#weight").val();
 	var tags = jQuery("#tags").val();
-	var breed = jQuery("#breed").val();
+	var memory = jQuery("#memory").val();
 	var url = jQuery("#url").val();
 	var location = jQuery("#location").val();
 
@@ -44,8 +43,7 @@ jQuery("#addForm").submit(function(e){
   		name : name,
   		age : age,
   		tags : tags,
-  		breed : breed,
-  		weight: weight,
+  		memory: memory,
   		url : url,
   		location : location
   	},
@@ -152,34 +150,34 @@ var renderPlaces = function() {
 		success : function(response) {
 
 			console.log(response);
-			animals = response.animals;
+			contributions = response.contribution;
 			// first clear any existing markers, because we will re-add below
 			clearMarkers();
 			markers = [];
 
-			// now, loop through the animals and add them as markers to the map
-			for(var i=0;i<animals.length;i++){
+			// now, loop through the memories and add them as markers to the map
+			for(var i=0;i<contributions.length;i++){
 
 				var latLng = {
-					lat: animals[i].location.geo[1], 
-					lng: animals[i].location.geo[0]
+					lat: contributions[i].location.geo[1], 
+					lng: contributions[i].location.geo[0]
 				}
 
 				// make and place map maker.
 				var marker = new google.maps.Marker({
 				    map: map,
 				    position: latLng,
-				    title : animals[i].name + "<br>" + animals[i].breed + "<br>" + animals[i].location.name
+				    title : contributions[i].name + "<br>" + contributions[i].memory + "<br>" + contributions[i].location.name
 				});
 
-				bindInfoWindow(marker, map, infowindow, '<b>'+animals[i].name + "</b> ("+animals[i].breed+") <br>" + animals[i].location.name);
+				bindInfoWindow(marker, map, infowindow, '<b>'+contributions[i].name + "</b> ("+contributions[i].breed+") <br>" + contributions[i].location.name);
 				
 				// keep track of markers
 				markers.push(marker);
 			}
 
 			// now, render the animal image/data
-			renderAnimals(animals);
+			renderContributions(contributions);
 
 		}
 	})
@@ -193,9 +191,8 @@ jQuery("#editForm").submit(function(e){
 	// the name form field value
 	var name = jQuery("#edit-name").val();
 	var age = jQuery("#edit-age").val();
-	var weight = jQuery("#editWeight").val();
 	var tags = jQuery("#edit-tags").val();
-	var breed = jQuery("#edit-breed").val();
+	var memory = jQuery("#edit-memory").val();
 	var url = jQuery("#edit-url").val();
 	var location = jQuery("#edit-location").val();
 	var id = jQuery("#edit-id").val();
@@ -215,8 +212,7 @@ jQuery("#editForm").submit(function(e){
   		name : name,
   		age : age,
   		tags : tags,
-  		breed : breed,
-  		weight: weight,
+  		memory : memory,
   		url : url,
   		location : location
   	},
@@ -255,29 +251,28 @@ var bindInfoWindow = function(marker, map, infowindow, html) {
     });
 }
 
-function renderAnimals(animals){
+function renderContributions(contribution){
 
 	// first, make sure the #animal-holder is empty
-	jQuery('#animal-holder').empty();
+	jQuery('#contribution-holder').empty();
 
 	// loop through all the animals and add them in the animal-holder div
-	for(var i=0;i<animals.length;i++){
-		var htmlToAdd = '<div class="col-md-4 animal">'+
-			'<img class="url" src="'+animals[i].url+'">'+
-			'<h1 class="name">'+animals[i].name+'</h1>'+
+	for(var i=0;i<contribution.length;i++){
+		var htmlToAdd = '<div class="col-md-4 contribution">'+
+			'<img class="url" src="'+contribution[i].url+'" style="width:300px; padding-top: 20px;">'+
+			'<h1 class="name">'+contribution[i].name+'</h1>'+
 			'<ul>'+
-				'<li>Location: <span class="location">'+animals[i].location.name+'</span></li>'+
-				'<li>Breed: <span class="breed">'+animals[i].breed+'</span></li>'+
-				'<li>Age: <span class="age">'+animals[i].age+'</span></li>'+
-				'<li>Weight: <span class="weight">'+animals[i].weight+'</span></li>'+
-				'<li>Tags: <span class="tags">'+animals[i].tags+'</span></li>'+
-				'<li class="hide id">'+animals[i]._id+'</li>'+
-			'</ul>'+
-			'<button type="button" id="'+animals[i]._id+'" onclick="deleteAnimal(event)">Delete Animal</button>'+
-			'<button type="button" data-toggle="modal" data-target="#editModal"">Edit Animal</button>'+
+				'<li>Location: <span class="location">'+contribution[i].location.name+'</span></li>'+
+				'<li>Memory: <span class="memory">'+contribution[i].memory+'</span></li>'+
+				'<li>Age: <span class="age">'+contribution[i].age+'</span></li>'+
+				'<li>Tags: <span class="tags">'+contribution[i].tags+'</span></li>'+
+				'<li class="hide id">'+contribution[i]._id+'</li>'+
+			'</ul>'
+			// + '<button type="button" id="'+contribution[i]._id+'" onclick="deleteAnimal(event)">Delete Animal</button>'+
+			// '<button type="button" data-toggle="modal" data-target="#editModal"">Edit Animal</button>'+
 		'</div>';
 
-		jQuery('#animal-holder').prepend(htmlToAdd);
+		jQuery('#contribution-holder').prepend(htmlToAdd);
 
 	}
 }
@@ -292,9 +287,8 @@ jQuery('#editModal').on('show.bs.modal', function (e) {
   // we do this by targeting specific spans within the parent and pulling out the text
   var name = $(parent).find('.name').text();
   var age = $(parent).find('.age').text();
-  var weight = $(parent).find('.weight').text();
   var tags = $(parent).find('.tags').text();
-  var breed = $(parent).find('.breed').text();
+  var memory = $(parent).find('.memory').text();
   var url = $(parent).find('.url').attr('src');
   var location = $(parent).find('.location').text();
   var id = $(parent).find('.id').text();
@@ -302,9 +296,8 @@ jQuery('#editModal').on('show.bs.modal', function (e) {
   // now let's set the value of the edit fields to those values
  	jQuery("#edit-name").val(name);
 	jQuery("#edit-age").val(age);
-	jQuery("#editWeight").val(weight);
 	jQuery("#edit-tags").val(tags);
-	jQuery("#edit-breed").val(breed);
+	jQuery("#edit-memory").val(memory);
 	jQuery("#edit-url").val(url);
 	jQuery("#edit-location").val(location);
 	jQuery("#edit-id").val(id);
@@ -312,7 +305,7 @@ jQuery('#editModal').on('show.bs.modal', function (e) {
 })
 
 
-function deleteAnimal(event){
+function deleteContribution(event){
 	var targetedId = event.target.id;
 	console.log('the animal to delete is ' + targetedId);
 
