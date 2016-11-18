@@ -203,7 +203,7 @@ router.post('/api/update/:id', function(req, res){
     if(req.body.memory) {
       memory = req.body.memory;
       // add to object that holds updated data
-      dataToUpdate['breed'] = breed;
+      dataToUpdate['memory'] = memory;
     }
     if(req.body.url) {
       url = req.body.url;

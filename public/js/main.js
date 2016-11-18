@@ -6,8 +6,8 @@ function init() {
   
   // set some default map details, initial center point, zoom and style
   var mapOptions = {
-    center: new google.maps.LatLng(40.74649,-74.0094), // NYC
-    zoom: 10,
+    center: new google.maps.LatLng(40.733404, -74.001750), // NYC
+    zoom: 16,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
   
@@ -167,10 +167,9 @@ var renderPlaces = function() {
 				var marker = new google.maps.Marker({
 				    map: map,
 				    position: latLng,
-				    title : contributions[i].name + "<br>" + contributions[i].memory + "<br>" + contributions[i].location.name
 				});
 
-				bindInfoWindow(marker, map, infowindow, '<b>'+contributions[i].name + "</b> ("+contributions[i].breed+") <br>" + contributions[i].location.name);
+				bindInfoWindow(marker, map, infowindow, '<b>' +contributions[i].name + "</b> <br>"+contributions[i].memory+" <br>" + contributions[i].location.name);
 				
 				// keep track of markers
 				markers.push(marker);
