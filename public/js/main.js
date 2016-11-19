@@ -172,7 +172,7 @@ var renderPlaces = function() {
 				    position: latLng,
 				});
 
-				bindInfoWindow(marker, map, infowindow, '<b>' +contributions[i].name + "</b> <br>"+contributions[i].name + " <br>"+contributions[i].memory+" <br>" + contributions[i].location.name);
+				bindInfoWindow(marker, map, infowindow, '<b>' +contributions[i].memory + "</b> <br>"+contributions[i].name+" <br>" + contributions[i].location.name);
 				
 				// keep track of markers
 				markers.push(marker);
