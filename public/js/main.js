@@ -29,6 +29,7 @@ jQuery("#addForm").submit(function(e){
 	var memory = jQuery("#memory").val();
 	var url = jQuery("#url").val();
 	var location = jQuery("#location").val();
+	var email = jQuery("#email").val();
 
 		// make sure we have a location
 	if(!location || location=="") return alert('We need a location!');
@@ -46,7 +47,8 @@ jQuery("#addForm").submit(function(e){
   		tags : tags,
   		memory: memory,
   		url : url,
-  		location : location
+  		location : location,
+  		email: email
   	},
   	success : function(response){
   		if(response.status=="OK"){
@@ -58,12 +60,12 @@ jQuery("#addForm").submit(function(e){
 	  		jQuery("#addForm input").val('');
   		}
   		else {
-  			alert("something went wrong");
+  			alert("something went wrong, it's possible google did not recogize the address you entered");
   		}
   	},
   	error : function(err){
   		// do error checking
-  		alert("something went wrong");
+  		alert("something went wrong, it's possible google did not recogize the address you entered");
   		console.error(err);
   	}
   });
@@ -195,6 +197,7 @@ jQuery("#editForm").submit(function(e){
 	var memory = jQuery("#edit-memory").val();
 	var url = jQuery("#edit-url").val();
 	var location = jQuery("#edit-location").val();
+	var email = jQuery("#edit-email").val();
 	var id = jQuery("#edit-id").val();
 
 	// make sure we have a location
@@ -214,7 +217,8 @@ jQuery("#editForm").submit(function(e){
   		tags : tags,
   		memory : memory,
   		url : url,
-  		location : location
+  		location : location,
+  		email: email
   	},
   	success : function(response){
   		if(response.status=="OK"){
@@ -259,15 +263,22 @@ function renderContributions(contribution){
 	// loop through all the animals and add them in the animal-holder div
 	for(var i=0;i<contribution.length;i++){
 		var htmlToAdd = '<div class="col-md-4 contribution" id="individualpost">'+
-			'<img class="url" src="'+contribution[i].url+'" >'+
-			'<h1 class="name">'+contribution[i].name+'</h1>'+
-			'<ul>'+
-				'<li>Location: <span class="location">'+contribution[i].location.name+'</span></li>'+
-				'<li>Memory: <span class="memory">'+contribution[i].memory+'</span></li>'+
-				'<li>Age: <span class="age">'+contribution[i].age+'</span></li>'+
-				'<li>Tags: <span class="tags">'+contribution[i].tags+'</span></li>'+
-				'<li class="hide id">'+contribution[i]._id+'</li>'+
-			'</ul>'
+			'<img class="url" src="'+contribution[i].url+'" style="width:200px; padding: 5px;">'+
+			'<h1 class="name">'+contribution[i].memory+'</h1>'+
+
+			'<p>Name: <span class="name">'+contribution[i].name+'</span><br>'+
+			'Location: <span class="location">'+contribution[i].location.name+'</span><br>'+
+			// 'Age: <span class="age">'+contribution[i].age+'</span><br>'+
+			'Tags: <span class="tags">'+contribution[i].tags+'</span><br>'+
+			// '<p class="hide id">'+contribution[i]._id+'</p>'+
+
+			// '<ul>'+
+			// 	'<li>Location: <span class="location">'+contribution[i].location.name+'</span></li>'+
+			// 	'<li>Name: <span class="memory">'+contribution[i].name+'</span></li>'+
+			// 	'<li>Age: <span class="age">'+contribution[i].age+'</span></li>'+
+			// 	'<li>Tags: <span class="tags">'+contribution[i].tags+'</span></li>'+
+			// 	'<li class="hide id">'+contribution[i]._id+'</li>'+
+			// '</ul>'
 			// + '<button type="button" id="'+contribution[i]._id+'" onclick="deleteAnimal(event)">Delete Animal</button>'+
 			// '<button type="button" data-toggle="modal" data-target="#editModal"">Edit Animal</button>'+
 		'</div>';
@@ -291,6 +302,7 @@ jQuery('#editModal').on('show.bs.modal', function (e) {
   var memory = $(parent).find('.memory').text();
   var url = $(parent).find('.url').attr('src');
   var location = $(parent).find('.location').text();
+  var email = $(parent).find('.email').text();
   var id = $(parent).find('.id').text();
 
   // now let's set the value of the edit fields to those values
@@ -300,6 +312,7 @@ jQuery('#editModal').on('show.bs.modal', function (e) {
 	jQuery("#edit-memory").val(memory);
 	jQuery("#edit-url").val(url);
 	jQuery("#edit-location").val(location);
+	jQuery("#edit-email").val(email);
 	jQuery("#edit-id").val(id);
 
 })

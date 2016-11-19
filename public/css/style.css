@@ -7,6 +7,7 @@ body{
 	/*background-color: #fff;*/
 	color: #5b5b5b;
 	font-family: 'Mallanna', sans-serif;
+	text-align: left;
 }
 
 p{
@@ -18,7 +19,7 @@ p{
 h1 {
 	font-family: 'Nunito', sans-serif;
 	color: #762866;
-	font-size: 150%;
+	font-size: 100%;
 
 }
 
@@ -34,17 +35,47 @@ h3 {
 	text-align: center;
 }
 
+h4 {
+	font-family: 'Nunito', sans-serif;
+	color: #FD3A98;
+	font-size: 200%;
+}
+
+#memorylabel{
+	margin-left: 20px;
+}
+
 #survey{
 	position: relative;
 	top: -50px;
 	margin-top: 20px;
 	background-color: #FFF;
+	border: 3px solid white;
+	border-radius: 10px;
 }
 
 #individualpost{
+	/*list-style-type:none;*/
+
+	line-height: 120%;
+
+	background-color: rgba(255, 255, 255, .5 );
+
+	width: 220px;
+
+	border: 3px solid white;
+	margin: 10px;
+
+	border-radius: 10px;
+
+	height: 300px;
+	text-overflow: ellipsis;
+	overflow: scroll;
+
+	padding: 5px 7px 3px 7px;
 	/*margin-top: 20px;*/
 /*	background-color: #FFF;
-	padding: 5px;*/
+	*/
 }
 
 .contribution {

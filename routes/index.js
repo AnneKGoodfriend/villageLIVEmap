@@ -65,6 +65,7 @@ router.post('/api/create', function(req, res){
     var memory = req.body.memory;
     var url = req.body.url;
     var location = req.body.location;
+    var email = req.body.email;
 
     // hold all this data in an object
     // this object should be structured the same way as your db model
@@ -73,7 +74,8 @@ router.post('/api/create', function(req, res){
       age: age,
       tags: tags,
       memory: memory,
-      url: url
+      url: url,
+      email: email
     };
 
     // if there is no location, return an error
@@ -108,11 +110,11 @@ router.post('/api/create', function(req, res){
       contribution.save(function(err,data){
         // if err saving, respond back with error
         if (err){
-          var error = {status:'ERROR', message: 'Error saving animal'};
+          var error = {status:'ERROR', message: 'Error saving memory'};
           return res.json(error);
         }
 
-        console.log('saved a new animal!');
+        console.log('saved a memory!');
         console.log(data);
 
         // now return the json data of the new animal
@@ -185,7 +187,8 @@ router.post('/api/create/image', multipartMiddleware, function(req,res){
       age: req.body.age,
       tags: req.body.tags,
       memory: req.body.memory,
-      url: req.body.url
+      url: req.body.url,
+      email: req.body.email
     };
 
 
@@ -357,6 +360,10 @@ router.post('/api/update/:id', function(req, res){
 
     // if there is no location, return an error
     if(!location) return res.json({status:'ERROR', message: 'You are missing a required field or have submitted a malformed request.'})
+
+    if(req.body.email) {
+      email = req.body.email;
+    }
 
     // now, let's geocode the location
     geocoder.geocode(location, function (err,data) {
