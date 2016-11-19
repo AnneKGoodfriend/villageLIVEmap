@@ -7,7 +7,7 @@
     <title>VillageLIVE</title>
 
     <!-- Custom Font - Change 'Muli' to the font you want -->
-    <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Mallanna|Nunito" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -25,12 +25,13 @@
 
   </head>
   <body>
+  <h3>VillageLIVE - Memory Map</h3>
   <div id="map-canvas"></div>
 
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
-        <h1>Contribute a Memory</h1>
+      <div class="col-md-4" id="survey">
+        <h2>Contribute a Memory</h2>
         <p>VillageLIVE is a celebration of Queer Community on the Streets of New York.</p>
         <p>We want to hear from you! Please take a moment to consider you personal experiences in the West Village. Share an event or memory of a positive experience of the LGBTQI community in the West Village.</p>
         <p>For example:
@@ -72,17 +73,17 @@
               <input type="text" class="form-control" id="url" placeholder="PhotoURL" name="url" >
             </div>
           </div>
-          <div class="form-group">
+<!--           <div class="form-group">
             <label for="url" class="col-sm-2 control-label">Upload Image</label>
             <div class="col-sm-10">
               <input type="file" name="image" id="image" value="Select a Photo">
             </div>
-          </div>
+          </div> -->
           <div class="form-group">
             <label for="location" class="col-sm-2 control-label">Location</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" id="location" placeholder="Location" name="location" required>
-            </div>
+          `  </div>
           </div>                                                
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
@@ -92,7 +93,7 @@
         </form>        
         
       </div>
-      <div class="col-md-8" id="contribution-holder">
+      <div class="col-md-8" id="contribution-holder" >
         
       </div>
     </div>
@@ -138,12 +139,12 @@
                 <input type="text" class="form-control" id="edit-url" placeholder="PhotoURL" name="url" >
               </div>
             </div>
-            <div class="form-group">
+           <!--  <div class="form-group">
               <label for="url" class="col-sm-2 control-label">Upload Image</label>
               <div class="col-sm-10">
                 <input type="file" name="image" id="image" value="Select a Photo">
               </div>
-            </div>
+            </div> -->
             <div class="form-group">
               <label for="location" class="col-sm-2 control-label">Location</label>
               <div class="col-sm-10">

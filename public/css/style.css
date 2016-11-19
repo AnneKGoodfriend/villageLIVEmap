@@ -4,27 +4,71 @@
 
 body{
 	background-color: #F3EBF6;
-	color: #3f4953;
+	/*background-color: #fff;*/
+	color: #5b5b5b;
+	font-family: 'Mallanna', sans-serif;
+}
+
+p{
+	font-family: 'Mallanna', sans-serif;
+	color: #5b5b5b;
+
 }
 
 h1 {
+	font-family: 'Nunito', sans-serif;
 	color: #762866;
+	font-size: 150%;
+
 }
 
-.animal {
-	min-height: 550px;
+h2 {
+	font-family: 'Nunito', sans-serif;
+	color: #FD3A98;
 }
 
-.animal img {
-	width: 100%;
+h3 {
+	font-family: 'Nunito', sans-serif;
+	color: #FD3A98;
+	font-size: 300%;
+	text-align: center;
 }
 
-#animal-holder{
-	margin-top: 75px;
+#survey{
+	position: relative;
+	top: -50px;
+	margin-top: 20px;
+	background-color: #FFF;
+}
+
+#individualpost{
+	/*margin-top: 20px;*/
+/*	background-color: #FFF;
+	padding: 5px;*/
+}
+
+.contribution {
+	min-height: 250px;
+}
+
+.contribution img {
+	width: 250px;
+}
+
+#contribution-holder{
+	/*position: relative;
+	top: 40px;*/
+	margin-top: 10px;
+	padding: 10px;
+	/*background-color: #FFF;*/
 }
 
 /* IMPORTANT - must give map div height */
-#map-canvas { height:400px; }
+#map-canvas { 
+	position: relative;
+	top: 10px;
+	height:350px; 
+}
 
 /* IMPORTANT - fixes webkit infoWindow rendering */
 #map-canvas img { max-width: none; }

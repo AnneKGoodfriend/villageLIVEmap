@@ -170,7 +170,7 @@ var renderPlaces = function() {
 				    position: latLng,
 				});
 
-				bindInfoWindow(marker, map, infowindow, '<b>' +contributions[i].name + "</b> <br>"+contributions[i].memory+" <br>" + contributions[i].location.name);
+				bindInfoWindow(marker, map, infowindow, '<b>' +contributions[i].name + "</b> <br>"+contributions[i].name + " <br>"+contributions[i].memory+" <br>" + contributions[i].location.name);
 				
 				// keep track of markers
 				markers.push(marker);
@@ -258,8 +258,8 @@ function renderContributions(contribution){
 
 	// loop through all the animals and add them in the animal-holder div
 	for(var i=0;i<contribution.length;i++){
-		var htmlToAdd = '<div class="col-md-4 contribution">'+
-			'<img class="url" src="'+contribution[i].url+'" style="width:300px; padding-top: 20px;">'+
+		var htmlToAdd = '<div class="col-md-4 contribution" id="individualpost">'+
+			'<img class="url" src="'+contribution[i].url+'" >'+
 			'<h1 class="name">'+contribution[i].name+'</h1>'+
 			'<ul>'+
 				'<li>Location: <span class="location">'+contribution[i].location.name+'</span></li>'+
