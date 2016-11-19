@@ -73,6 +73,12 @@
             </div>
           </div>
           <div class="form-group">
+            <label for="url" class="col-sm-2 control-label">Upload Image</label>
+            <div class="col-sm-10">
+              <input type="file" name="image" id="image" value="Select a Photo">
+            </div>
+          </div>
+          <div class="form-group">
             <label for="location" class="col-sm-2 control-label">Location</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" id="location" placeholder="Location" name="location" required>
@@ -105,19 +111,19 @@
             <div class="form-group">
               <label for="name" class="col-sm-2 control-label">Name</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="edit-name" placeholder="Name" name="name" required>
+                <input type="text" class="form-control" id="edit-name" placeholder="Name" name="name" >
               </div>
             </div>
             <div class="form-group">
               <label for="age" class="col-sm-2 control-label">Age</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="edit-age" placeholder="Age" name="age" required>
+                <input type="text" class="form-control" id="edit-age" placeholder="Age" name="age" >
               </div>
             </div>
             <div class="form-group">
               <label for="tags" class="col-sm-2 control-label">Tags</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="edit-tags" placeholder="Tags (separated by comma)" name="tags" required>
+                <input type="text" class="form-control" id="edit-tags" placeholder="Tags (separated by comma)" name="tags" >
               </div>
             </div> 
             <div class="form-group">
@@ -129,7 +135,13 @@
             <div class="form-group">
               <label for="url" class="col-sm-2 control-label">ImgURL</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="edit-url" placeholder="PhotoURL" name="url" required>
+                <input type="text" class="form-control" id="edit-url" placeholder="PhotoURL" name="url" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="url" class="col-sm-2 control-label">Upload Image</label>
+              <div class="col-sm-10">
+                <input type="file" name="image" id="image" value="Select a Photo">
               </div>
             </div>
             <div class="form-group">
@@ -141,7 +153,7 @@
             <div class="form-group hide">
               <label for="id" class="col-sm-2 control-label">ID</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="edit-id" placeholder="id" name="edit-id" required>
+                <input type="text" class="form-control" id="edit-id" placeholder="id" name="edit-id" >
               </div>
             </div>                                                            
             <div class="form-group">
@@ -168,7 +180,7 @@
     <!-- JQuery validate -->
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
 
-    <script type="text/javascript">
+<!--     <script type="text/javascript">
       $("form").validate({
           rules: {
             editWeight: {
@@ -181,7 +193,7 @@
             }
           }
       }); 
-    </script>    
+    </script>   -->  
 
     <!-- CUSTOM JS -->
     <script src="js/main.js"></script>

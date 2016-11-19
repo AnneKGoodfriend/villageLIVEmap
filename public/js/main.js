@@ -38,6 +38,7 @@ jQuery("#addForm").submit(function(e){
   	url : '/api/create',
   	dataType : 'json',
   	type : 'POST',
+  	encrypt: 'multipart/form-data',
   	// we send the data in a data object (with key/value pairs)
   	data : {
   		name : name,
