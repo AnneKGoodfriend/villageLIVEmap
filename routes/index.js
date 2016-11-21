@@ -30,14 +30,16 @@ var multipartMiddleware = multipart();
  * @return {Object} json
  */
 router.get('/', function(req, res) {
-  
-  var jsonData = {
-  	'name': 'village-live-map',
-  	'api-status':'OK'
-  }
 
-  // respond with json data
-  res.json(jsonData)
+  res.render('survey.html');
+  
+  // var jsonData = {
+  // 	'name': 'village-live-map',
+  // 	'api-status':'OK'
+  // }
+
+  // // respond with json data
+  // res.json(jsonData)
 });
 
 // simple route to show the survey html
