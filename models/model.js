@@ -15,6 +15,7 @@ var contributionSchema = new Schema({
 		geo: { type: [Number], index: { type: '2dsphere', sparse: true } },
 		name: String
 	},	
+	email: String,
 	dateAdded : { type: Date, default: Date.now },
 })
 

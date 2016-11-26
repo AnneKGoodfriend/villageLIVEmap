@@ -42,10 +42,20 @@ router.get('/', function(req, res) {
   // res.json(jsonData)
 });
 
+router.get('/about', function(req,res){
+  res.render('about.html');
+})
+
+router.get('/explore', function(req,res){
+  res.render('explore.html');
+})
+
 // simple route to show the survey html
 router.get('/survey', function(req,res){
   res.render('survey.html');
 })
+
+
 
 // /**
 //  * POST '/api/create'
