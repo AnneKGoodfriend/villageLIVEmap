@@ -1,95 +1,6 @@
 /**************/
 /* Custom CSS */
 /**************/
-
-.jumbotron{
-	text-align: center;
-	/*background-color: yellow;*/
-	/*background: url('/assets/headerimage.png') no-repeat center center;*/
-	/*background-position: 0% 25%;*/
-    /*background-size: cover;*/
-    /*background-repeat: no-repeat;*/
-
-}
-
-.bg {
-  /*background: url('../img/carouelbackground.jpg') no-repeat center center;*/
-  /*background: url('/assets/headerimage.png') no-repeat center center;
-  position: fixed;
-  width: 100%;
-  height: 350px; 
-  top:0;
-  left:0;
-  z-index: -1;*/
-}
-
-/* margin-bottom: 0px;
-    background-image: url(../img/jumbotronbackground.jpg);
-    background-position: 0% 25%;
-    background-size: cover;
-    background-repeat: no-repeat;
-*/
-#sitetitle{
-	margin-left:150px;
-	margin-right:150px;
-	margin-bottom: 20px;
-	padding:10;
-	border-bottom: 2px solid #58ECDC;
-}
-
-#headline{
-	padding:10;
-	margin-bottom: 20px;
-
-}
-
-.btn {
-	/*background-color: #fff;*/
-}
-
-.btn-primary {
-	height:50px;
-    width:200px;
-    font-size: 20px;
-    line-height: 0;
-    color: #fff;
-    background-color: #58ECDC;
-    border-color: #58ECDC;
-    margin: 10px;
-    
-}
-
-.btn-primary:hover, .button-link:focus {
-    background-color: #fff;
-    border: solid 1px #58ECDC;
-    text-decoration: none;
-    color:#58ECDC;
-}
-
-.btn-primary:active {
-    background-color: #fff;
-    border: solid 1px #58ECDC;
-    text-decoration: none;
-    color:#58ECDC;
-    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
-}
-
-/*.btn-primary:active {
-	background-color: #fff;
-    border: solid 1px #58ECDC;
-    text-decoration: none;
-    color:#58ECDC;
-    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
-}
-
-.button-link:active {
-	background-color: #fff;
-    border: solid 1px #58ECDC;
-    text-decoration: none;
-    color:#58ECDC;
-    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
-}*/
-
 body{
 	background-color: #F3f3f3;
 	/*background-color: #fff;*/
@@ -101,8 +12,12 @@ body{
 p{
 	font-family: 'Mallanna', sans-serif;
 	color: #5b5b5b;
+	font-size: 18px;
+	line-height: 1.4;
 
 }
+
+
 
 h1 {
 	font-family: 'Nunito', sans-serif;
@@ -113,59 +28,285 @@ h1 {
 
 h2 {
 	font-family: 'Nunito', sans-serif;
-	color: #FD3A98;
+	color: #762866;
+	font-size: 28px;
+	
 }
 
 h3 {
 	font-family: 'Nunito', sans-serif;
 	color: #FD3A98;
 	font-size: 300%;
-	text-align: center;
+	text-decoration: none;
 }
 
 h4 {
 	font-family: 'Nunito', sans-serif;
 	color: #FD3A98;
-	font-size: 200%;
+	font-size: 24px;
 }
 
 h5 {
 	font-family: 'Mallanna', sans-serif;
-	color: #5b5b5b;
-	font-size: 200%;
+	color: #FD3A98;
+	font-size: 24px;
 }
+
+
+.jumbotron{
+	text-align: center;
+	/*background: url('/assets/headerimage.png') no-repeat center center;*/
+	background: url('https://s3-us-west-2.amazonaws.com/villagelive1/headerimage2.png') no-repeat center center;
+	background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    /*height: 300px;*/
+    /*width:100%;*/
+    /*margin-top: 15px;*/
+    /*margin:0 auto;*/
+}
+
+.container .jumbotron {
+    border-radius: 0px;
+}
+
+#footer{
+	padding-top: 30px;
+	height: 115px;
+	background-color: #FD3A98;
+}
+
+.p-footer{
+	font-family: 'Mallanna', sans-serif;
+	color: #fff;
+	font-size: 120%;
+	text-align: center;
+}
+
+#sitetitle{
+	margin-left:150px;
+	margin-right:150px;
+	margin-bottom: 20px;
+	margin-top: -30px;
+	/*padding:10;*/
+	border-bottom: 2px solid #58ECDC;
+}
+
+#headline{
+	padding:10;
+	margin-bottom: 20px;
+	color: #fff;
+}
+
+.btn {
+	background-color: #fff;
+	border: 2px solid;
+    border-color: #58ECDC;
+    border-radius:.6px;
+    height:50px;
+    width:200px;
+}
+
+.btn-menubutton {
+	display:inline-block;
+	height:40px;
+    min-width: 200px;
+    font-size: 20px;
+    line-height: 1.9;
+    color: #fff;
+    background-color: #58ECDC;
+    margin: 10px;
+    border: 2px solid #58ECDC;
+    border-radius: 6px;
+    
+}
+
+.btn-menubutton:hover, .btn-menubutton:focus {
+    background-color: #fff;
+    border: solid 1px #58ECDC;
+    text-decoration: none;
+    color:#58ECDC;
+}
+
+.btn-menubutton:active {
+    background-color: #fff;
+    border: solid 1px #58ECDC;
+    text-decoration: none;
+    color:#58ECDC;
+    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+}
+
+.btn-menubutton-active {
+	display:inline-block;
+	height:40px;
+    min-width: 200px;
+    font-size: 20px;
+    line-height: 1.9;
+   	background-color: #fff;
+   	margin: 10px;
+    border: solid 2px #fff;
+    text-decoration: none;
+    color:#CE7AEB;
+    border-radius: 6px;
+}
+
+.btn-menubutton-active:hover, .btn-menubutton-active:focus {
+    background-color: #fff;
+    border: solid 1px #58ECDC;
+    text-decoration: none;
+    color:#58ECDC;
+}
+
+.btn-menubutton-active:active {
+    background-color: #fff;
+    border: solid 1px #58ECDC;
+    text-decoration: none;
+    color:#58ECDC;
+    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+}
+
+.btn-infobutton {
+	display:inline-block;
+	height:40px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 1.9;
+    color: #fff;
+    background-color: #CE7AEB;
+    /*margin: 10px;*/
+    border: 2px solid #CE7AEB;
+    border-radius: 6px;
+    padding: 0px 30px 0px 30px;
+}
+
+.btn-infobutton:hover, .btn-infobutton:focus {
+    background-color: #fff;
+    border: solid 1px #CE7AEB;
+    text-decoration: none;
+    color:#CE7AEB;
+}
+
+.btn-infobutton:active {
+    background-color: #fff;
+    border: solid 1px #CE7AEB;
+    text-decoration: none;
+    color:#CE7AEB;
+    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+}
+
+.btn-infobutton2 {
+	display:inline-block;
+	height:40px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 1.9;
+    color: #fff;
+    background-color: #FD3A98;
+    /*margin: 10px;*/
+    border: 2px solid #FD3A98;
+    border-radius: 6px;
+    padding: 0px 25px 0px 25px;
+}
+
+.btn-infobutton2:hover, .btn-infobutton:focus {
+    background-color: #fff;
+    border: solid 1px #FD3A98;
+    text-decoration: none;
+    color:#FD3A98;
+}
+
+.btn-infobutton2:active {
+    background-color: #fff;
+    border: solid 1px #FD3A98;
+    text-decoration: none;
+    color:#FD3A98;
+    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+}
+
+
+#mission{
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+#checkitout{
+	height: 200px;
+	background-color: #58ECDC;
+	padding-bottom: 30px;
+	text-align: center;
+}
+
+#learnmore{
+	/*margin: -top: 20px;*/
+	padding: 15px 20px 15px 20px;
+	color: #fff;
+	font-size: 36px;
+	/*vertical-align: middle;*/
+	line-height: 40px; 
+}
+
+#nelson{
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+#aboutnelson{
+	padding-top: 50px;
+	padding-bottom: 30px;
+}
+
+#villageliveapp{
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 30px;
+}
+
+#viewmap{
+	height: 300px;
+	background-color: #58ECDC;
+	padding-bottom: 30px;
+	text-align: left;
+}
+
+#arches{
+	position: absolute;
+    left: 0;
+    bottom: -299px;
+}
+
+
+
+
+
+
 
 #memorylabel{
 	margin-left: 20px;
 }
 
 #survey{
-	position: relative;
-	top: -50px;
-	margin-top: 20px;
-	background-color: #FFF;
+	/*position: relative;`
+	top: -50px;*/
+	/*margin-top: 20px;*/
+	background-color: #fff;
 	border: 3px solid white;
 	border-radius: 10px;
+	/*margin-left: 10px;*/
 }
 
 #individualpost{
 	/*list-style-type:none;*/
 
 	line-height: 120%;
-
 	background-color: rgba(255, 255, 255, .5 );
-
 	width: 220px;
-
 	border: 3px solid white;
 	margin: 10px;
-
 	border-radius: 10px;
-
 	height: 300px;
 	text-overflow: ellipsis;
 	overflow: scroll;
-
 	padding: 5px 7px 3px 7px;
 	/*margin-top: 20px;*/
 /*	background-color: #FFF;
@@ -191,8 +332,11 @@ h5 {
 /* IMPORTANT - must give map div height */
 #map-canvas { 
 	position: relative;
-	top: 10px;
-	height:350px; 
+	/*top: 10px;
+	left: 800px;*/
+	height:400px; 
+	width: 95%;
+	margin-left: 10px;
 }
 
 /* IMPORTANT - fixes webkit infoWindow rendering */
