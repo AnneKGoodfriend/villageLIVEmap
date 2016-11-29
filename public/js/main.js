@@ -1,18 +1,18 @@
 // CUSTOM JS FILE //
-var map; // global map variable
+// var map; // global map variable
 var markers = []; // array to hold map markers
 
 function init() {
   
   // set some default map details, initial center point, zoom and style
-  var mapOptions = {
-    center: new google.maps.LatLng(40.733404, -74.001750), // NYC
-    zoom: 16,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
+  // var mapOptions = {
+  //   center: new google.maps.LatLng(40.733404, -74.001750), // NYC
+  //   zoom: 16,
+  //   mapTypeId: google.maps.MapTypeId.ROADMAP
+  // };
   
-  // create the map and reference the div#map-canvas container
-  map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+  // // create the map and reference the div#map-canvas container
+  // map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
   
   // get the animals (ajax) 
   // and render them on the map
@@ -77,80 +77,58 @@ jQuery("#addForm").submit(function(e){
 });
 
 
-
-
-
-
-
-
-
-// // when the addForm is submitted (with a new animal), the below runs
-// jQuery("#addForm").submit(function(e){
-
-// 	// first, let's pull out all the values
-// 	// the name form field value
-// 	var name = jQuery("#name").val();
-// 	var age = jQuery("#age").val();
-// 	var weight = jQuery("#weight").val();
-// 	var tags = jQuery("#tags").val();
-// 	var breed = jQuery("#breed").val();
-// 	var url = jQuery("#url").val();
-// 	var location = jQuery("#location").val();
-
-// 	// make sure we have a location
-// 	if(!location || location=="") return alert('We need a location!');
-      
-// 	// POST the data from above to our API create route
-//   jQuery.ajax({
-//   	url : '/api/create',
-//   	dataType : 'json',
-//   	type : 'POST',
-//   	// we send the data in a data object (with key/value pairs)
-//   	data : {
-//   		name : name,
-//   		age : age,
-//   		tags : tags,
-//   		breed : breed,
-//   		weight: weight,
-//   		url : url,
-//   		location : location
-//   	},
-//   	success : function(response){
-//   		if(response.status=="OK"){
-// 	  		// success
-// 	  		console.log(response);
-// 	  		// re-render the map
-// 	  		renderPlaces();
-// 	  		// now, clear the input fields
-// 	  		jQuery("#addForm input").val('');
-//   		}
-//   		else {
-//   			alert("something went wrong");
-//   		}
-//   	},
-//   	error : function(err){
-//   		// do error checking
-//   		alert("something went wrong");
-//   		console.error(err);
-//   	}
-//   }); 
-
-// 	// prevents the form from submitting normally
-//   e.preventDefault();
-//   return false;
-// });
-
 // get Animals JSON from /api/get
 // loop through and populate the map with markers
 var renderPlaces = function() {
-	var infowindow =  new google.maps.InfoWindow({
-	    content: ''
-	});
+	// var infowindow =  new google.maps.InfoWindow({
+	//     content: ''
+	// });
+
+
+	//Nelson Json Stuff
+	var promise = $.getJSON('/data/vids2.json');
+				promise.then(function(response) {
+				    //do a bunch of stuff here
+				    console.log(response)
+
+
+				   for(var i=0;i<response.length;i++){
+				   	
+				   	var lat = response[i].lat;
+				   	var long = response[i].long;
+				   	var title = response[i].title;
+				   	var embed = response[i].youtubeembed;
+				   	console.log(lat);
+				   	console.log(long);
+				   	console.log(title);
+
+				   	// var nelsonmarkers = 
+				   	L.marker([response[i].lat, response[i].long], {icon: blueIcon})
+					.addTo(mymap)
+					.bindPopup(response[i].title + '<br>' + embed).openPopup();
+				   }
+
+
+
+				     
+				});
+
+
 
 	jQuery.ajax({
 		url : '/api/get',
 		dataType : 'json',
 		success : function(response) {
+
+			// var promise = $.getJSON('/api/get');
+			// 	promise.then(function(response) {
+				    //do a bunch of stuff here
+				//     console.log(data) // take a look at the data in the console
+				// });
+
+			// var userMemories = L.geoJson(data, {
+   //           filter: usermemory;
+			// });
 
 			console.log(response);
 			contributions = response.contribution;
@@ -167,15 +145,35 @@ var renderPlaces = function() {
 				}
 
 				// make and place map maker.
-				var marker = new google.maps.Marker({
-				    map: map,
-				    position: latLng,
-				});
+				// var marker = new google.maps.Marker({
+				//     map: map,
+				//     position: latLng,
+				// });
 
-				bindInfoWindow(marker, map, infowindow, '<b>' +contributions[i].memory + "</b> <br>"+contributions[i].name+" <br>" + contributions[i].location.name);
+				// var findphoto = contributions[i].url;
+				// console.log(findphoto);
+
+
+
+
+				if (contributions[i].url != 'undefined'){
+					var photo = '<img class="url" src="'+contributions[i].url+'" style="width:300px; padding: 5px;">'}else{ photo = '<img class="url" src="https://s3-us-west-2.amazonaws.com/villagelive1/noimageavailable.png" style="width:200px; padding: 5px;">'};
+					// console.log(photo);
+
+
+
+
+				//leaflet stuff
+				// userMemories.addTo(mymap)
+				var memorymarkers = L.marker([contributions[i].location.geo[1], contributions[i].location.geo[0]], {icon: pinkIcon})
+				.addTo(mymap)
+				.bindPopup(photo + ' <br> <b>' +contributions[i].memory + "</b> <br>"+contributions[i].name+" <br>" + contributions[i].location.name)
+				.openPopup();
+		
+				// bindInfoWindow(marker, map, infowindow, '<b>' +contributions[i].memory + "</b> <br>"+contributions[i].name+" <br>" + contributions[i].location.name);
 				
 				// keep track of markers
-				markers.push(marker);
+				// markers.push(marker);
 			}
 
 			// now, render the animal image/data
