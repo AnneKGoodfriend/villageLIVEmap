@@ -1,6 +1,16 @@
 // CUSTOM JS FILE //
 // var map; // global map variable
-var markers = []; // array to hold map markers
+// var markers = []; // array to hold map markers
+var usermapmarkers = new L.FeatureGroup();
+// var nelsonmarkers = [];
+var nelsonmapmarkers = new L.FeatureGroup();
+// var nelsonmapmarkers = [];
+
+var nelsonvids;
+
+var nelsondisplay=true;
+var userdisplay=true;
+
 
 function init() {
   
@@ -77,110 +87,100 @@ jQuery("#addForm").submit(function(e){
 });
 
 
-// get Animals JSON from /api/get
+// get data
 // loop through and populate the map with markers
 var renderPlaces = function() {
-	// var infowindow =  new google.maps.InfoWindow({
-	//     content: ''
-	// });
-
 
 	//Nelson Json Stuff
 	var promise = $.getJSON('/data/vids2.json');
 				promise.then(function(response) {
-				    //do a bunch of stuff here
-				    console.log(response)
-
-
+				
+				   // console.log(response)
 				   for(var i=0;i<response.length;i++){
 				   	
-				   	var lat = response[i].lat;
-				   	var long = response[i].long;
-				   	var title = response[i].title;
-				   	var embed = response[i].youtubeembed;
-				   	console.log(lat);
-				   	console.log(long);
-				   	console.log(title);
+				   	var d = {
+				   	 lat : response[i].lat,
+				   	 long : response[i].long,
+				   	 title : response[i].title,
+				   	 embed : response[i].youtubeembed,
+				   	}
+				   	// console.log(nelsonmarkers);
+
+				   	var mapmarker = L.marker([d.lat, d.long], {icon: blueIcon})
+					mapmarker.bindPopup(d.title+ '<br>' + d.embed)
+					.openPopup();
+					// console.log(mapmarker);
+					
+
+					nelsonmapmarkers.addLayer(mapmarker);
+					// console.log(nelsonmapmarkers);
 
 				   	// var nelsonmarkers = 
-				   	L.marker([response[i].lat, response[i].long], {icon: blueIcon})
-					.addTo(mymap)
-					.bindPopup(response[i].title + '<br>' + embed).openPopup();
+				 	//  L.marker([response[i].lat, response[i].long], {icon: blueIcon})
+					// .addTo(mymap)
+					// .bindPopup(response[i].title + '<br>' + embed).openPopup();
 				   }
-
-
-
 				     
 				});
 
+				// grouped markers
+				mymap.addLayer(nelsonmapmarkers);
+				
 
 
+	//Mongodb stuff
 	jQuery.ajax({
 		url : '/api/get',
 		dataType : 'json',
 		success : function(response) {
 
-			// var promise = $.getJSON('/api/get');
-			// 	promise.then(function(response) {
-				    //do a bunch of stuff here
-				//     console.log(data) // take a look at the data in the console
-				// });
-
-			// var userMemories = L.geoJson(data, {
-   //           filter: usermemory;
-			// });
-
-			console.log(response);
+			// console.log(response);
 			contributions = response.contribution;
-			// first clear any existing markers, because we will re-add below
-			clearMarkers();
-			markers = [];
 
 			// now, loop through the memories and add them as markers to the map
 			for(var i=0;i<contributions.length;i++){
 
-				var latLng = {
+				var d = {
 					lat: contributions[i].location.geo[1], 
-					lng: contributions[i].location.geo[0]
+					lng: contributions[i].location.geo[0],
+					url : contributions[i].url,
+					memory: contributions[i].memory,
+					name: contributions[i].name,
+					loc: contributions[i].location.name
 				}
+				// console.log(markers);
 
-				// make and place map maker.
-				// var marker = new google.maps.Marker({
-				//     map: map,
-				//     position: latLng,
-				// });
+				 if (d.url != 'undefined'){
+					var photo = '<img class="url" src="'+d.url+'" style="width:300px; padding: 5px;">'}else{ photo = '<img class="url" src="https://s3-us-west-2.amazonaws.com/villagelive1/noimageavailable.png" style="width:200px; padding: 5px;">'};
 
-				// var findphoto = contributions[i].url;
-				// console.log(findphoto);
+				var mapmarker = L.marker([d.lat, d.lng], {icon: pinkIcon})
+					mapmarker.bindPopup(photo + ' <br> <b>' +d.memory + "</b> <br>"+d.name+" <br>" + d.loc).openPopup();
+					// console.log(mapmarker);
+					
 
+					usermapmarkers.addLayer(mapmarker);
+					// console.log(nelsonmapmarkers);
 
+				//leaflet stuff (with array)
+			
 
+				// if (contributions[i].url != 'undefined'){
+				// 	var photo = '<img class="url" src="'+contributions[i].url+'" style="width:300px; padding: 5px;">'}else{ photo = '<img class="url" src="https://s3-us-west-2.amazonaws.com/villagelive1/noimageavailable.png" style="width:200px; padding: 5px;">'};
 
-				if (contributions[i].url != 'undefined'){
-					var photo = '<img class="url" src="'+contributions[i].url+'" style="width:300px; padding: 5px;">'}else{ photo = '<img class="url" src="https://s3-us-west-2.amazonaws.com/villagelive1/noimageavailable.png" style="width:200px; padding: 5px;">'};
-					// console.log(photo);
-
-
-
-
-				//leaflet stuff
-				// userMemories.addTo(mymap)
-				var memorymarkers = L.marker([contributions[i].location.geo[1], contributions[i].location.geo[0]], {icon: pinkIcon})
-				.addTo(mymap)
-				.bindPopup(photo + ' <br> <b>' +contributions[i].memory + "</b> <br>"+contributions[i].name+" <br>" + contributions[i].location.name)
-				.openPopup();
-		
-				// bindInfoWindow(marker, map, infowindow, '<b>' +contributions[i].memory + "</b> <br>"+contributions[i].name+" <br>" + contributions[i].location.name);
-				
-				// keep track of markers
-				// markers.push(marker);
-			}
+				// //leaflet stuff
+				// L.marker([contributions[i].location.geo[1], contributions[i].location.geo[0]], {icon: pinkIcon})
+				// .addTo(mymap)
+				// .bindPopup(photo + ' <br> <b>' +contributions[i].memory + "</b> <br>"+contributions[i].name+" <br>" + contributions[i].location.name)
+				// .openPopup();
+				}
 
 			// now, render the animal image/data
 			renderContributions(contributions);
 
 		}
 	})
+
+	mymap.addLayer(usermapmarkers);
 };
 
 // edit form button event
@@ -335,17 +335,56 @@ function deleteContribution(event){
 	event.preventDefault();
 }
 
-function clearMarkers(){
-  for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(null); // clears the markers
-  }	
-}
+// function clearMarkers(){
+//   for (var i = 0; i < markers.length; i++) {
+//     markers[i].setMap(null); // clears the markers
+//   }	
+// }
 
-// when page is ready, initialize the map!
-google.maps.event.addDomListener(window, 'load', init);
+// document.getElementById('displaygraph').classList.toggle('active');
 
+$(nelsonbutton).click(function() {
 
-//window.addEventListener('load',init);
+    if (nelsondisplay==true){
+	    mymap.removeLayer(nelsonmapmarkers)
+	    
+		$(this).addClass("mapButtonActive");
+	    nelsondisplay=false;
+
+    }else {
+	    mymap.addLayer(nelsonmapmarkers)
+
+	    $(this).removeClass("mapButtonActive");
+	    nelsondisplay=true;
+    }
+
+    var type = $(this).attr("class"); 
+   console.log(type); 
+
+});
+
+$(userbutton).click(function() {
+
+    if (userdisplay==true){
+	    mymap.removeLayer(usermapmarkers);
+
+		$(this).addClass("mapButtonActive");
+	    userdisplay=false;
+
+    }else {
+	    mymap.addLayer(usermapmarkers);
+
+	    $(this).removeClass("mapButtonActive");
+	    userdisplay=true;
+	    console.log(userdisplay);
+    }
+
+    var type = $(this).attr("class"); 
+   console.log(type); 
+
+});
+
+window.addEventListener('load',init);
 
 
 

@@ -224,7 +224,6 @@ h5 {
     .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
 }
 
-
 #mission{
 	padding-top: 30px;
 	padding-bottom: 30px;
@@ -338,15 +337,81 @@ h5 {
 	margin-left: 10px;
 }
 
+.nelsonmapButton{
+	width: 120px;
+	/*height:40px;*/
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.9;
+    color: #fff;
+    background-color: #8AF1E6;
+    /*margin: 10px;*/
+    border: 2px solid #8AF1E6;
+    border-radius: 6px;
+    /*padding: 0px 15px 0px 15px;*/
+}
+
+.nelsonmapButton:hover,  {
+    background-color: #A9A9A9;
+    border: solid 2px #A9A9A9;
+    text-decoration: none;
+    color:#fff;
+}
+
+.usermapButton{
+	width: 120px;
+	/*height:40px;*/
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.9;
+    color: #fff;
+    background-color: #FD3A98;
+    /*margin: 10px;*/
+    border: 2px solid #FD3A98;
+    border-radius: 6px;
+    /*padding: 0px 15px 0px 15px;*/
+}
+
+.usermapButton:hover,  {
+    background-color: #A9A9A9;
+    border: solid 2px #A9A9A9;
+    text-decoration: none;
+    color:#fff;
+}
+
+/*.mapButton:active {
+    background-color: #A9A9A9;
+    border: solid 2px #A9A9A9;
+    text-decoration: none;
+    color:#fff;
+    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+}*/
+
+.mapButtonActive{
+	width: 120px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.9;
+    color: #fff;
+    background-color: #A9A9A9;
+    border: solid 2px #A9A9A9;
+    text-decoration: none;
+    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+}
+
+
+
+button:focus {outline:0;}
+
 /* IMPORTANT - must give map div height */
-#map-canvas { 
+/*#map-canvas { 
 	position: relative;
 	/*top: 10px;
-	left: 800px;*/
+	left: 800px;
 	height:400px; 
 	width: 95%;
 	margin-left: 10px;
 }
 
-/* IMPORTANT - fixes webkit infoWindow rendering */
+/* IMPORTANT - fixes webkit infoWindowendering 
 #map-canvas img { max-width: none; }

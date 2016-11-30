@@ -17,14 +17,11 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
 
-  <!-- Map stuff -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <!-- Map stuff -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
 
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
-   
-
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -116,7 +113,6 @@
             <label for="location" class="col-sm-2 control-label">Email</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" id="email" placeholder="If you are interested in updates..." name="email" >
-              <!-- <p>Where were you?</p> -->
           </div>
           </div>                                                
           <div class="form-group">
@@ -125,11 +121,17 @@
             </div>
           </div>
         </form>        
-        
       </div>
-      <div class="col-md-8">
 
-      <div id="mapid"></div>
+      <div class="col-md-8">
+        <div class="col-lg-3" style="width:150px; height:40px; font-size: 20px; line-height: 1.9;"> Toggle Layers:</div>
+          <div id="mapmenu" class="btn-group"> 
+            <div class="col-lg-2"><button type="button" class="nelsonmapButton" id="nelsonbutton">Nelon's Story</button></div>
+            <div class="col-sm-offset-3  col-lg-4"><button type="button" class="usermapButton" id="userbutton"  >User Stories</button></div>
+        </div>
+        <br>
+        <br>
+        <div id="mapid"></div>
 
       <!-- div id="map-canvas"></div> -->
         
@@ -154,7 +156,7 @@
   </div>
 
   <!-- Edit Modal -->
-  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!--   <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -192,14 +194,14 @@
               <div class="col-sm-10">
                 <input type="text" class="form-control" id="edit-url" placeholder="PhotoURL" name="url" >
               </div>
-            </div>
+            </div> -->
            <!--  <div class="form-group">
               <label for="url" class="col-sm-2 control-label">Upload Image</label>
               <div class="col-sm-10">
                 <input type="file" name="image" id="image" value="Select a Photo">
               </div>
             </div> -->
-            <div class="form-group">
+     <!--        <div class="form-group">
               <label for="location" class="col-sm-2 control-label">Location</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" id="edit-location" placeholder="Location" name="location" required>
@@ -220,13 +222,12 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   </body>
 
     <!-- JQuery script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAcN6VtdpM55-CGGyEAWX2qEWs_Qwg4wXM"></script>    
 
     <!-- Latest compiled and minified JavaScript -->
@@ -234,20 +235,6 @@
 
     <!-- JQuery validate -->
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
-
-<!--     <script type="text/javascript">
-      $("form").validate({
-          rules: {
-            editWeight: {
-              required: true,
-              number: true // must be a number
-            },
-            weight: {
-              required: true,
-              number: true // must be a number
-            }
-          }
-      }); 
     </script>   -->  
 
     <!-- CUSTOM JS -->

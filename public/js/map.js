@@ -1,17 +1,15 @@
 
 
-var mymap = L.map('mapid')
-	.setView([40.730969, -73.997525], 14);
+// var mymap = L.map('mapid')
+// 	.setView([40.730969, -73.997525], 14);
 
-// Window.map = new L.Map('map');
+// var nelsonvids = L.layerGroup(nelsonmapmarkers);
 
-L.tileLayer('https://api.mapbox.com/styles/v1/annekgoodfriend/ciw2fcl6200502kr3zr3a3cnl/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW5uZWtnb29kZnJpZW5kIiwiYSI6ImNpdmxxNTh4dzBlMXUzM21xcDlhajRna2QifQ.yD0FIvUUIqgKpsoVXMl_QA', {
-	// maxZoom: 18,
-	// attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-	// 	'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-	// 	'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-	// id: 'mapbox.streets'
-}).addTo(mymap);
+// var mymap = L.map('mapid', {
+//     center: [40.730969, -73.997525],
+//     zoom: 14,
+//     // layers: [nelsonmapmarkers]
+// });
 
 var blueIcon = L.icon({
 iconUrl: 'https://s3-us-west-2.amazonaws.com/villagelive1/bluepin.png',
@@ -34,6 +32,36 @@ iconAnchor:   [22, 94], // point of the icon which will correspond to marker's l
 shadowAnchor: [22, 94],  // the same for the shadow
 popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
+
+
+
+var mapbackground = L.tileLayer('https://api.mapbox.com/styles/v1/annekgoodfriend/ciw2fcl6200502kr3zr3a3cnl/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW5uZWtnb29kZnJpZW5kIiwiYSI6ImNpdmxxNTh4dzBlMXUzM21xcDlhajRna2QifQ.yD0FIvUUIqgKpsoVXMl_QA', {
+	// maxZoom: 18,
+	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+		'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+		'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+	id: 'mapbox.streets'
+});
+
+var mymap = L.map('mapid')
+	.setView([40.730969, -73.997525], 15)
+	.addLayer(mapbackground);
+	// .scrollWheelZoom.disable();
+
+//layers stuff (not using)
+// var baseMaps = {
+//     "NYC": mapbackground
+// };
+
+// var overlayMaps = {
+//     "Users Contributions": usermapmarkers,
+//     "Nelson's Story": nelsonmapmarkers
+//     // "Nelson": 
+// };
+
+// L.control.layers(null,overlayMaps).addTo(mymap);
+
+
 
 	// L.marker([40.730969, -73.997525]).addTo(mymap)
 	// 	.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
