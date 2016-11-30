@@ -274,24 +274,24 @@ h5 {
     bottom: -299px;
 }
 
-
-
-
-
-
-
 #memorylabel{
 	margin-left: 20px;
 }
 
+#mappagecontainer{
+	background-color: rgba(255,255,255,0.3);
+	/*margin-left: 35px;*/
+	/*border: 2px solid #fff;*/
+}
+
 #survey{
-	/*position: relative;`
-	top: -50px;*/
+	/*top: -50px;*/
 	/*margin-top: 20px;*/
+	/*margin-left: 35px;*/
 	background-color: #fff;
 	border: 3px solid white;
 	border-radius: 10px;
-	/*margin-left: 10px;*/
+	margin-bottom: 10px;
 }
 
 #individualpost{
@@ -328,16 +328,17 @@ h5 {
 	/*background-color: #FFF;*/
 }
 
-#mapid { 
-	position: relative;
-	/*top: 10px;
-	left: 800px;*/
-	height:1075px; 
-	width: 100%;
-	margin-left: 10px;
+#mapbuttonholder{
+	/*background-color: #fff;*/
+	margin-bottom: 20px;
+	/*margin-left: 35px;*/
+	padding: 5px 0px 0px 0px;
+	/*border: 1px solid #fff;*/
+    /*border-radius: 6px;*/
 }
 
 .nelsonmapButton{
+	display:inline-block;
 	width: 120px;
 	/*height:40px;*/
     font-size: 14px;
@@ -345,7 +346,8 @@ h5 {
     line-height: 1.9;
     color: #fff;
     background-color: #8AF1E6;
-    /*margin: 10px;*/
+    margin-right: 10px;
+    margin-left: 10px;
     border: 2px solid #8AF1E6;
     border-radius: 6px;
     /*padding: 0px 15px 0px 15px;*/
@@ -359,6 +361,7 @@ h5 {
 }
 
 .usermapButton{
+	display:inline-block;
 	width: 120px;
 	/*height:40px;*/
     font-size: 14px;
@@ -366,6 +369,8 @@ h5 {
     line-height: 1.9;
     color: #fff;
     background-color: #FD3A98;
+    margin-right: 10px;
+    margin-left: 10px;
     /*margin: 10px;*/
     border: 2px solid #FD3A98;
     border-radius: 6px;
@@ -399,7 +404,15 @@ h5 {
     .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
 }
 
-
+#mapid { 
+	position: relative;
+	/*margin-left: 35px;*/
+	/*top: 10px;
+	left: 800px;*/
+	height:1075px; 
+	width: 100%;
+	margin-left: 20px;
+}
 
 button:focus {outline:0;}
 

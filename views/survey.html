@@ -33,7 +33,7 @@
   </head>
   <body>
 
-   <div class="container">
+   <div class="container" id="mappagecontainer">
 
       <div class="jumbotron jumbotron-fluid">
       <div id="sitetitle"><h1>VillageLIVE</h1></div>
@@ -48,7 +48,7 @@
     </div>
   
   
-    <div class="row">
+    <div class="row" style="  position: relative; left: 30px;">
       <div class="col-md-4" id="survey">
         <h2>Contribute a Memory</h2>
         <b><p>VillageLIVE is a celebration of Queer Community on the Streets of New York.</p>
@@ -123,14 +123,16 @@
         </form>        
       </div>
 
-      <div class="col-md-8">
-        <div class="col-lg-3" style="width:150px; height:40px; font-size: 20px; line-height: 1.9;"> Toggle Layers:</div>
-          <div id="mapmenu" class="btn-group"> 
-            <div class="col-lg-2"><button type="button" class="nelsonmapButton" id="nelsonbutton">Nelon's Story</button></div>
-            <div class="col-sm-offset-3  col-lg-4"><button type="button" class="usermapButton" id="userbutton"  >User Stories</button></div>
+      <div class="col-md-7">
+        <div class="col-md-10" id="mapbuttonholder">
+          <div class="col-md-3" style="width:150px; height:40px; font-size: 20px; line-height: 1.9;"> Toggle Layers:</div>
+            <div id="mapmenu" class="btn-group"> 
+              <div class="col-md-4"><button type="button" class="nelsonmapButton" id="nelsonbutton">Nelon's Story</button></div>
+              <div class="col-md-offset-1 col-md-4"><button type="button" class="usermapButton" id="userbutton"  >User Stories</button></div>
+          </div>
         </div>
-        <br>
-        <br>
+
+        <!-- draw map -->
         <div id="mapid"></div>
 
       <!-- div id="map-canvas"></div> -->
