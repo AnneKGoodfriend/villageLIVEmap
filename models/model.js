@@ -19,5 +19,5 @@ var contributionSchema = new Schema({
 	dateAdded : { type: Date, default: Date.now },
 })
 
-// export 'Animal' model so we can interact with it in other files
+// export Memory model so we can interact with it in other files
 module.exports = mongoose.model('Contribution',contributionSchema);

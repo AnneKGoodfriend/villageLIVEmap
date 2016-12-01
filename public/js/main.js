@@ -166,10 +166,10 @@ var renderPlaces = function() {
 
 function renderContributions(contribution){
 
-	// first, make sure the #animal-holder is empty
+	// first, make sure the #memory-holder is empty
 	jQuery('#contribution-holder').empty();
 
-	// loop through all the animals and add them in the animal-holder div
+	// loop through all the memorys and add them in the memory-holder div
 	for(var i=0;i<contribution.length;i++){
 		var htmlToAdd = '<div class="col-md-4 contribution" id="individualpost">'+
 			'<img class="url" src="'+contribution[i].url+'" style="width:200px; padding: 5px;">'+
