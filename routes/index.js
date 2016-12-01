@@ -107,17 +107,17 @@ router.post('/api/create', function(req, res){
       var lon = data.results[0].geometry.location.lng;
       var lat = data.results[0].geometry.location.lat;
 
-      // now, let's add this to our memory  object from above
+      // now, let's add this to our memory object from above
       contributionObj.location = {
         geo: [lon,lat], // need to put the geo co-ordinates in a lng-lat array for saving
         name: data.results[0].formatted_address // the location name
       }
 
       // now, let's save it to the database
-      // create a new memory  model instance, passing in the object we've created
+      // create a new memory model instance, passing in the object we've created
       var contribution = new Contribution(contributionObj);
 
-      // now, save that memory  instance to the database
+      // now, save that memory instance to the database
       // mongoose method, see http://mongoosejs.com/docs/api.html#model_Model-save    
       contribution.save(function(err,data){
         // if err saving, respond back with error
@@ -129,7 +129,7 @@ router.post('/api/create', function(req, res){
         console.log('saved a memory!');
         console.log(data);
 
-        // now return the json data of the new memory 
+        // now return the json data of the new memory
         var jsonData = {
           status: 'OK',
           contribution: data
@@ -144,8 +144,8 @@ router.post('/api/create', function(req, res){
 
 // /**
 //  * GET '/api/get/:id'
-//  * Receives a GET request specifying the memory  to get
-//  * @param  {String} req.param('id'). The memory Id
+//  * Receives a GET request specifying the memory to get
+//  * @param  {String} req.param('id'). The memoryId
 //  * @return {Object} JSON
 //  */
 
@@ -158,11 +158,11 @@ router.get('/api/get/:id', function(req, res){
 
     // if err or no user found, respond with error 
     if(err || data == null){
-      var error = {status:'ERROR', message: 'Could not find that memory '};
+      var error = {status:'ERROR', message: 'Could not find that memory'};
        return res.json(error);
     }
 
-    // otherwise respond with JSON data of the memory 
+    // otherwise respond with JSON data of the memory
     var jsonData = {
       status: 'OK',
       contribution: data
@@ -175,7 +175,7 @@ router.get('/api/get/:id', function(req, res){
 
 // /**
 //  * GET '/api/get'
-//  * Receives a GET request to get all memory  details
+//  * Receives a GET request to get all memory details
 //  * @return {Object} JSON
 //  */
 
@@ -321,9 +321,9 @@ router.get('/api/get', function(req, res){
 
 // /**
 //  * POST '/api/update/:id'
-//  * Receives a POST request with data of the memory  to update, updates db, responds back
-//  * @param  {String} req.param('id'). The memory Id to update
-//  * @param  {Object} req. An object containing the different attributes of the memory 
+//  * Receives a POST request with data of the memory to update, updates db, responds back
+//  * @param  {String} req.param('id'). The memoryId to update
+//  * @param  {Object} req. An object containing the different attributes of the memory
 //  * @return {Object} JSON
 //  */
 
@@ -391,7 +391,7 @@ router.post('/api/update/:id', function(req, res){
       var lon = data.results[0].geometry.location.lng;
       var lat = data.results[0].geometry.location.lat;
 
-      // now, let's add this to our memory  object from above
+      // now, let's add this to our memory object from above
       dataToUpdate['location'] = {
         geo: [lon,lat], // need to put the geo co-ordinates in a lng-lat array for saving
         name: data.results[0].formatted_address // the location name
@@ -399,16 +399,16 @@ router.post('/api/update/:id', function(req, res){
 
       console.log('the data to update is ' + JSON.stringify(dataToUpdate));
 
-      // now, update that memory 
+      // now, update that memory
       // mongoose method findByIdAndUpdate, see http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate  
       Contribution.findByIdAndUpdate(requestedId, dataToUpdate, function(err,data){
         // if err saving, respond back with error
         if (err){
-          var error = {status:'ERROR', message: 'Error updating memory '};
+          var error = {status:'ERROR', message: 'Error updating memory'};
           return res.json(error);
         }
 
-        console.log('updated the memory !');
+        console.log('updated the memory!');
         console.log(data);
 
         // now return the json data of the new person
@@ -427,8 +427,8 @@ router.post('/api/update/:id', function(req, res){
 
 /**
  * GET '/api/delete/:id'
- * Receives a GET request specifying the memory  to delete
- * @param  {String} req.param('id'). The memory Id
+ * Receives a GET request specifying the memory to delete
+ * @param  {String} req.param('id'). The memoryId
  * @return {Object} JSON
  */
 
@@ -439,7 +439,7 @@ router.get('/api/delete/:id', function(req, res){
   // Mongoose method to remove, http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove
  Contribution.findByIdAndRemove(requestedId,function(err, data){
     if(err || data == null){
-      var error = {status:'ERROR', message: 'Could not find that memory  to delete'};
+      var error = {status:'ERROR', message: 'Could not find that memory to delete'};
       return res.json(error);
     }
 

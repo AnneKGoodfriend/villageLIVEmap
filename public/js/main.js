@@ -164,6 +164,76 @@ var renderPlaces = function() {
 	mymap.addLayer(usermapmarkers);
 };
 
+// edit form button event
+// when the form is submitted (with a new animal edit), the below runs
+jQuery("#editForm").submit(function(e){
+
+	// first, let's pull out all the values
+	// the name form field value
+	var name = jQuery("#edit-name").val();
+	var age = jQuery("#edit-age").val();
+	var tags = jQuery("#edit-tags").val();
+	var memory = jQuery("#edit-memory").val();
+	var url = jQuery("#edit-url").val();
+	var location = jQuery("#edit-location").val();
+	var email = jQuery("#edit-email").val();
+	var id = jQuery("#edit-id").val();
+
+	// make sure we have a location
+	if(!location || location=="") return alert('We need a location!');
+     
+  console.log(id);
+      
+	// POST the data from above to our API create route
+  jQuery.ajax({
+  	url : '/api/update/'+id,
+  	dataType : 'json',
+  	type : 'POST',
+  	// we send the data in a data object (with key/value pairs)
+  	data : {
+  		name : name,
+  		age : age,
+  		tags : tags,
+  		memory : memory,
+  		url : url,
+  		location : location,
+  		email: email
+  	},
+  	success : function(response){
+  		if(response.status=="OK"){
+	  		// success
+	  		console.log(response);
+	  		// re-render the map
+	  		renderPlaces();
+	  		// now, close the modal
+	  		$('#editModal').modal('hide')
+	  		// now, clear the input fields
+	  		jQuery("#editForm input").val('');
+  		}
+  		else {
+  			alert("something went wrong");
+  		}
+  	},
+  	error : function(err){
+  		// do error checking
+  		alert("something went wrong");
+  		console.error(err);
+  	}
+  }); 
+
+	// prevents the form from submitting normally
+  e.preventDefault();
+  return false;
+});
+
+// binds a map marker and infoWindow together on click
+var bindInfoWindow = function(marker, map, infowindow, html) {
+    google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(html);
+        infowindow.open(map, marker);
+    });
+}
+
 function renderContributions(contribution){
 
 	// first, make sure the #memory-holder is empty
@@ -181,6 +251,55 @@ function renderContributions(contribution){
 
 		jQuery('#contribution-holder').prepend(htmlToAdd);
 	}
+}
+
+jQuery('#editModal').on('show.bs.modal', function (e) {
+  // let's get access to what we just clicked on
+  var clickedButton = e.relatedTarget;
+  // now let's get its parent
+	var parent = jQuery(clickedButton).parent();
+
+  // now, let's get the values of the pet that we're wanting to edit
+  // we do this by targeting specific spans within the parent and pulling out the text
+  var name = $(parent).find('.name').text();
+  var age = $(parent).find('.age').text();
+  var tags = $(parent).find('.tags').text();
+  var memory = $(parent).find('.memory').text();
+  var url = $(parent).find('.url').attr('src');
+  var location = $(parent).find('.location').text();
+  var email = $(parent).find('.email').text();
+  var id = $(parent).find('.id').text();
+
+  // now let's set the value of the edit fields to those values
+ 	jQuery("#edit-name").val(name);
+	jQuery("#edit-age").val(age);
+	jQuery("#edit-tags").val(tags);
+	jQuery("#edit-memory").val(memory);
+	jQuery("#edit-url").val(url);
+	jQuery("#edit-location").val(location);
+	jQuery("#edit-email").val(email);
+	jQuery("#edit-id").val(id);
+
+})
+
+
+function deleteContribution(event){
+	var targetedId = event.target.id;
+	console.log('the animal to delete is ' + targetedId);
+
+	// now, let's call the delete route with AJAX
+	jQuery.ajax({
+		url : '/api/delete/'+targetedId,
+		dataType : 'json',
+		success : function(response) {
+			// now, let's re-render the animals
+
+			renderPlaces();
+
+		}
+	})
+
+	event.preventDefault();
 }
 
 //toggle nelson button and layers

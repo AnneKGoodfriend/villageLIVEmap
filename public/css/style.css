@@ -14,23 +14,18 @@ p{
 	color: #5b5b5b;
 	font-size: 18px;
 	line-height: 1.4;
-
 }
-
-
 
 h1 {
 	font-family: 'Nunito', sans-serif;
 	color: #762866;
 	font-size: 100%;
-
 }
 
 h2 {
 	font-family: 'Nunito', sans-serif;
 	color: #762866;
 	font-size: 28px;
-	
 }
 
 h3 {
@@ -418,7 +413,7 @@ h5 {
 
 #mapid { 
 	position: relative;
-	left: 800px;*/
+	/*left: 800px;*/
 	height:1000px; 
 	width: 100%;
 	margin-left: 20px;
