@@ -1,33 +1,33 @@
 // CUSTOM JS FILE //
-// var map; // global map variable
-// var markers = []; // array to hold map markers
-var usermapmarkers = new L.FeatureGroup();
-// var nelsonmarkers = [];
-var nelsonmapmarkers = new L.FeatureGroup();
-// var nelsonmapmarkers = [];
 
-var nelsonvids;
+var usermapmarkers = new L.FeatureGroup();
+var nelsonmapmarkers = new L.FeatureGroup();
 
 var nelsondisplay=true;
 var userdisplay=true;
 
 
 function init() {
-  
-  // set some default map details, initial center point, zoom and style
-  // var mapOptions = {
-  //   center: new google.maps.LatLng(40.733404, -74.001750), // NYC
-  //   zoom: 16,
-  //   mapTypeId: google.maps.MapTypeId.ROADMAP
-  // };
-  
-  // // create the map and reference the div#map-canvas container
-  // map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-  
-  // get the animals (ajax) 
-  // and render them on the map
+  // and render  markers on the map
   renderPlaces();
 }
+
+//image upload sw3 ???
+// var fd = new FormData();
+
+// // pull out the file
+// fd.append( 'image', $('input[type=file]')[0].files[0] );
+
+// $.ajax({
+//   url: '/api/create'
+//   data: fd,
+//   processData: false,
+//   contentType: false,
+//   type: 'POST',
+//   success: function(data){
+//     alert(data);
+//   }
+// });
 
 jQuery("#addForm").submit(function(e){
 
@@ -80,7 +80,7 @@ jQuery("#addForm").submit(function(e){
   	}
   });
 
-	// prevents the form from submitting normally
+// prevents the form from submitting normally
   e.preventDefault();
   return false;
 
@@ -93,38 +93,33 @@ var renderPlaces = function() {
 
 	//Nelson Json Stuff
 	var promise = $.getJSON('/data/vids2.json');
-				promise.then(function(response) {
+		promise.then(function(response) {
 				
 				   // console.log(response)
-				   for(var i=0;i<response.length;i++){
+			for(var i=0;i<response.length;i++){
 				   	
-				   	var d = {
-				   	 lat : response[i].lat,
-				   	 long : response[i].long,
+				var d = {
+				   	 lat : parseFloat(response[i].lat) - parseFloat(.004),
+				   	 long : parseFloat(response[i].long) +parseFloat(.001),
 				   	 title : response[i].title,
+				   	 loc : response[i].location,
 				   	 embed : response[i].youtubeembed,
-				   	}
+				}
 				   	// console.log(nelsonmarkers);
 
-				   	var mapmarker = L.marker([d.lat, d.long], {icon: blueIcon})
-					mapmarker.bindPopup(d.title+ '<br>' + d.embed)
+				var mapmarker = L.marker([d.lat, d.long], {icon: blueIcon})
+					mapmarker.bindPopup('<b>'+ d.loc + ' </b> <br>' + d.title + '<br>' + d.embed)
 					.openPopup();
 					// console.log(mapmarker);
 					
-
-					nelsonmapmarkers.addLayer(mapmarker);
-					// console.log(nelsonmapmarkers);
-
-				   	// var nelsonmarkers = 
-				 	//  L.marker([response[i].lat, response[i].long], {icon: blueIcon})
-					// .addTo(mymap)
-					// .bindPopup(response[i].title + '<br>' + embed).openPopup();
-				   }
+				//push to FeatureGroup as layer
+				nelsonmapmarkers.addLayer(mapmarker);
+				// console.log(nelsonmapmarkers);
+				}
 				     
-				});
-
-				// grouped markers
-				mymap.addLayer(nelsonmapmarkers);
+			});
+		// grouped markers
+		mymap.addLayer(nelsonmapmarkers);
 				
 
 
@@ -136,13 +131,12 @@ var renderPlaces = function() {
 
 			// console.log(response);
 			contributions = response.contribution;
-
 			// now, loop through the memories and add them as markers to the map
 			for(var i=0;i<contributions.length;i++){
 
 				var d = {
-					lat: contributions[i].location.geo[1], 
-					lng: contributions[i].location.geo[0],
+					lat : parseFloat(contributions[i].location.geo[1]) - parseFloat(.004),
+				   	lng : parseFloat(contributions[i].location.geo[0]) + parseFloat(.001),
 					url : contributions[i].url,
 					memory: contributions[i].memory,
 					name: contributions[i].name,
@@ -157,101 +151,18 @@ var renderPlaces = function() {
 					mapmarker.bindPopup(photo + ' <br> <b>' +d.memory + "</b> <br>"+d.name+" <br>" + d.loc).openPopup();
 					// console.log(mapmarker);
 					
+				//push to FeatureGroup as layer
+				usermapmarkers.addLayer(mapmarker);
+				// console.log(nelsonmapmarkers);
 
-					usermapmarkers.addLayer(mapmarker);
-					// console.log(nelsonmapmarkers);
-
-				//leaflet stuff (with array)
-			
-
-				// if (contributions[i].url != 'undefined'){
-				// 	var photo = '<img class="url" src="'+contributions[i].url+'" style="width:300px; padding: 5px;">'}else{ photo = '<img class="url" src="https://s3-us-west-2.amazonaws.com/villagelive1/noimageavailable.png" style="width:200px; padding: 5px;">'};
-
-				// //leaflet stuff
-				// L.marker([contributions[i].location.geo[1], contributions[i].location.geo[0]], {icon: pinkIcon})
-				// .addTo(mymap)
-				// .bindPopup(photo + ' <br> <b>' +contributions[i].memory + "</b> <br>"+contributions[i].name+" <br>" + contributions[i].location.name)
-				// .openPopup();
 				}
-
-			// now, render the animal image/data
+			// grouped markers
 			renderContributions(contributions);
-
 		}
 	})
 
 	mymap.addLayer(usermapmarkers);
 };
-
-// edit form button event
-// when the form is submitted (with a new animal edit), the below runs
-jQuery("#editForm").submit(function(e){
-
-	// first, let's pull out all the values
-	// the name form field value
-	var name = jQuery("#edit-name").val();
-	var age = jQuery("#edit-age").val();
-	var tags = jQuery("#edit-tags").val();
-	var memory = jQuery("#edit-memory").val();
-	var url = jQuery("#edit-url").val();
-	var location = jQuery("#edit-location").val();
-	var email = jQuery("#edit-email").val();
-	var id = jQuery("#edit-id").val();
-
-	// make sure we have a location
-	if(!location || location=="") return alert('We need a location!');
-     
-  console.log(id);
-      
-	// POST the data from above to our API create route
-  jQuery.ajax({
-  	url : '/api/update/'+id,
-  	dataType : 'json',
-  	type : 'POST',
-  	// we send the data in a data object (with key/value pairs)
-  	data : {
-  		name : name,
-  		age : age,
-  		tags : tags,
-  		memory : memory,
-  		url : url,
-  		location : location,
-  		email: email
-  	},
-  	success : function(response){
-  		if(response.status=="OK"){
-	  		// success
-	  		console.log(response);
-	  		// re-render the map
-	  		renderPlaces();
-	  		// now, close the modal
-	  		$('#editModal').modal('hide')
-	  		// now, clear the input fields
-	  		jQuery("#editForm input").val('');
-  		}
-  		else {
-  			alert("something went wrong");
-  		}
-  	},
-  	error : function(err){
-  		// do error checking
-  		alert("something went wrong");
-  		console.error(err);
-  	}
-  }); 
-
-	// prevents the form from submitting normally
-  e.preventDefault();
-  return false;
-});
-
-// binds a map marker and infoWindow together on click
-var bindInfoWindow = function(marker, map, infowindow, html) {
-    google.maps.event.addListener(marker, 'click', function() {
-        infowindow.setContent(html);
-        infowindow.open(map, marker);
-    });
-}
 
 function renderContributions(contribution){
 
@@ -263,131 +174,45 @@ function renderContributions(contribution){
 		var htmlToAdd = '<div class="col-md-4 contribution" id="individualpost">'+
 			'<img class="url" src="'+contribution[i].url+'" style="width:200px; padding: 5px;">'+
 			'<h1 class="name">'+contribution[i].memory+'</h1>'+
-
 			'<p>Name: <span class="name">'+contribution[i].name+'</span><br>'+
 			'Location: <span class="location">'+contribution[i].location.name+'</span><br>'+
-			// 'Age: <span class="age">'+contribution[i].age+'</span><br>'+
 			'Tags: <span class="tags">'+contribution[i].tags+'</span><br>'+
-			// '<p class="hide id">'+contribution[i]._id+'</p>'+
-
-			// '<ul>'+
-			// 	'<li>Location: <span class="location">'+contribution[i].location.name+'</span></li>'+
-			// 	'<li>Name: <span class="memory">'+contribution[i].name+'</span></li>'+
-			// 	'<li>Age: <span class="age">'+contribution[i].age+'</span></li>'+
-			// 	'<li>Tags: <span class="tags">'+contribution[i].tags+'</span></li>'+
-			// 	'<li class="hide id">'+contribution[i]._id+'</li>'+
-			// '</ul>'
-			// + '<button type="button" id="'+contribution[i]._id+'" onclick="deleteAnimal(event)">Delete Animal</button>'+
-			// '<button type="button" data-toggle="modal" data-target="#editModal"">Edit Animal</button>'+
 		'</div>';
 
 		jQuery('#contribution-holder').prepend(htmlToAdd);
-
 	}
 }
 
-jQuery('#editModal').on('show.bs.modal', function (e) {
-  // let's get access to what we just clicked on
-  var clickedButton = e.relatedTarget;
-  // now let's get its parent
-	var parent = jQuery(clickedButton).parent();
-
-  // now, let's get the values of the pet that we're wanting to edit
-  // we do this by targeting specific spans within the parent and pulling out the text
-  var name = $(parent).find('.name').text();
-  var age = $(parent).find('.age').text();
-  var tags = $(parent).find('.tags').text();
-  var memory = $(parent).find('.memory').text();
-  var url = $(parent).find('.url').attr('src');
-  var location = $(parent).find('.location').text();
-  var email = $(parent).find('.email').text();
-  var id = $(parent).find('.id').text();
-
-  // now let's set the value of the edit fields to those values
- 	jQuery("#edit-name").val(name);
-	jQuery("#edit-age").val(age);
-	jQuery("#edit-tags").val(tags);
-	jQuery("#edit-memory").val(memory);
-	jQuery("#edit-url").val(url);
-	jQuery("#edit-location").val(location);
-	jQuery("#edit-email").val(email);
-	jQuery("#edit-id").val(id);
-
-})
-
-
-function deleteContribution(event){
-	var targetedId = event.target.id;
-	console.log('the animal to delete is ' + targetedId);
-
-	// now, let's call the delete route with AJAX
-	jQuery.ajax({
-		url : '/api/delete/'+targetedId,
-		dataType : 'json',
-		success : function(response) {
-			// now, let's re-render the animals
-
-			renderPlaces();
-
-		}
-	})
-
-	event.preventDefault();
-}
-
-// function clearMarkers(){
-//   for (var i = 0; i < markers.length; i++) {
-//     markers[i].setMap(null); // clears the markers
-//   }	
-// }
-
-// document.getElementById('displaygraph').classList.toggle('active');
-
+//toggle nelson button and layers
 $(nelsonbutton).click(function() {
-
     if (nelsondisplay==true){
-	    mymap.removeLayer(nelsonmapmarkers)
-	    
+	    mymap.removeLayer(nelsonmapmarkers)	    
 		$(this).addClass("mapButtonActive");
 	    nelsondisplay=false;
-
     }else {
 	    mymap.addLayer(nelsonmapmarkers)
-
 	    $(this).removeClass("mapButtonActive");
 	    nelsondisplay=true;
     }
-
     var type = $(this).attr("class"); 
-   console.log(type); 
-
+   // console.log(type); 
 });
 
+//toggle user button and layers
 $(userbutton).click(function() {
-
     if (userdisplay==true){
 	    mymap.removeLayer(usermapmarkers);
-
 		$(this).addClass("mapButtonActive");
 	    userdisplay=false;
-
     }else {
 	    mymap.addLayer(usermapmarkers);
-
 	    $(this).removeClass("mapButtonActive");
 	    userdisplay=true;
 	    console.log(userdisplay);
     }
-
     var type = $(this).attr("class"); 
-   console.log(type); 
+   // console.log(type); 
 
 });
 
 window.addEventListener('load',init);
-
-
-
-
-
-

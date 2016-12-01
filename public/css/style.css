@@ -168,10 +168,10 @@ h5 {
 
 .btn-infobutton {
 	display:inline-block;
-	height:40px;
+	height: 35px;
     font-size: 20px;
     text-align: center;
-    line-height: 1.9;
+    line-height: 1.5;
     color: #fff;
     background-color: #CE7AEB;
     /*margin: 10px;*/
@@ -197,10 +197,10 @@ h5 {
 
 .btn-infobutton2 {
 	display:inline-block;
-	height:40px;
+	height: 35px;
     font-size: 20px;
     text-align: center;
-    line-height: 1.9;
+    line-height: 1.5;
     color: #fff;
     background-color: #FD3A98;
     /*margin: 10px;*/
@@ -225,8 +225,20 @@ h5 {
 }
 
 #mission{
-	padding-top: 30px;
-	padding-bottom: 30px;
+	/*padding-top: 10px;*/
+	padding-bottom: 40px;
+}
+
+#aboutimage{
+	margin-top: 30px;
+	/*border: 6px solid #FD3A98;*/
+    border-radius: 6px;
+    background: rgba(0,255,255, 0.5);
+    /*box-shadow: 10px 10px 5px #FD3A98;*/
+	/*padding-bottom: 10px;*/
+/*	-webkit-filter: grayscale(100%);
+    filter: grayscale(100%);*/
+
 }
 
 #checkitout{
@@ -406,25 +418,10 @@ h5 {
 
 #mapid { 
 	position: relative;
-	/*margin-left: 35px;*/
-	/*top: 10px;
 	left: 800px;*/
-	height:1075px; 
+	height:1000px; 
 	width: 100%;
 	margin-left: 20px;
 }
 
 button:focus {outline:0;}
-
-/* IMPORTANT - must give map div height */
-/*#map-canvas { 
-	position: relative;
-	/*top: 10px;
-	left: 800px;
-	height:400px; 
-	width: 95%;
-	margin-left: 10px;
-}
-
-/* IMPORTANT - fixes webkit infoWindowendering 
-#map-canvas img { max-width: none; }

@@ -31,7 +31,7 @@ var multipartMiddleware = multipart();
  */
 router.get('/', function(req, res) {
 
-  res.render('survey.html');
+  res.render('about.html');
   
   // var jsonData = {
   // 	'name': 'village-live-map',
